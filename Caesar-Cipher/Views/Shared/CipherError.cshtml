@@ -1,0 +1,15 @@
+﻿@{
+    ViewData["Title"] = "Error -";
+}
+<div class="pb-2 mt-4 mb-2 border-bottom">
+    <h3 class="text-center">
+        Something went wrong.
+    </h3>
+</div>
+<h3>Exception details:</h3>
+<div class="alert-danger">
+    <h5>Exception Message</h5>
+    <hr />
+    <p>@ViewBag.ExceptionMessage</p>
+</div>
+<a asp-area="" asp-controller="Cipher" asp-action="Index">Click To Return</a>

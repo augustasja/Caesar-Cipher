@@ -1,0 +1,53 @@
+﻿@model Caesar_Cipher.Models.CaesarsCipherModel
+
+<div class="pb-2 mt-4 mb-2 border-bottom">
+    <h3 class="text-center">
+        CAESAR CIPHER
+    </h3>
+</div>
+<form method="POST" asp-controller="Cipher" onsubmit="submitCaesars()">
+    <div class="form-group shadow-textarea">
+        <textarea class="form-control" asp-for="Input" id="inputID" rows="3" placeholder="Caesar Code Plain Text" onfocus="clearContent('outputID')"></textarea>
+        <div class="form-group">
+            <lable>SHIFT</lable>
+            <input type="number" asp-for="Shift" id="shiftID" value="@(ViewBag.shift ?? 3)" />
+            <button type="submit" class="btn btn-danger">
+                ENCRYPT/DECRYPT
+            </button>
+        </div>
+        <div class="form-group shadow-textarea">
+            <textarea class="form-control" asp-for="Output" id="outputID" rows="3" placeholder="Caesar CipherText" onfocus="clearContent('inputID')"></textarea>
+        </div>
+    </div>
+</form>
+<div class="form-group">
+    <p>
+        <pre style="width:100%;white-space:pre-wrap;"><label>Plain Text: @ViewData["Plain"]@ViewData["CipherO"]</label></pre>
+    </p>
+    <pre style="width:100%;white-space:pre-wrap;"><label>Cipher Text: @ViewData["CipherI"]@ViewData["Cipher"]</label></pre>
+</div>
+@section Scripts{
+    <script type="text/javascript">
+
+        setTimeout(
+            function submitCaesars() {
+                var elem1 = document.getElementById('inputID');
+                var elem = document.getElementById('outputID');
+
+                if (elem1.value == null && elem.value == null)
+                    return;
+
+                var dataI = '@ViewData["CipherI"]';
+                var dataO = '@ViewData["CipherO"]';
+                elem1.innerHTML = dataO;
+                elem.innerHTML = dataI;
+            }, 1
+        );
+
+        function clearContent(element) {
+            var clear = document.getElementById(element);
+            clear.value = '';
+        }
+
+    </script>
+}
